@@ -1,6 +1,7 @@
 ---
 title: Container Docker Images Information
 ---
+<!--
 # Image Information
 
 These documents for Ping Identity Docker images include information on:
@@ -22,3 +23,26 @@ As with many organizations, Ping Identity uses _floating_ Docker image tags. Thi
 
 !!! note "Notification of new image tags"
     If you want to be notified when new versions of product Docker images are available, see the **Docker Images** section of the [FAQ page](../reference/faqs.md) for instructions on following the docker-builds GitHub repository.
+-->
+
+# イメージの情報
+
+Ping Identity Docker イメージに関するこれらのドキュメントには、次の情報が含まれています。
+
+* 関連する Docker イメージ
+* コンテナ用に公開されたポート
+* イメージの環境変数
+* 関連するデプロイ情報
+* タグ付け方法とサポート ポリシー
+
+イメージ固有のドキュメントは、新しいビルドごとに生成され、これらのドキュメントが時間の経過による変更に合わせて調整されるようになります。
+
+!!! warning "AWS でのストレージに関する考慮事項"
+    Ping 製品をコンテナに展開する場合は、[ストレージ オプション](../reference/awsStorage.md)に関するここに記載されている情報を考慮してください。
+
+当社のポリシーでサポートされなくなった製品バージョンに基づく古いイメージは、Docker Hub から削除されます。詳細については、[サポート ポリシーのページ](./imageSupport.md)をご覧ください。
+
+多くの組織と同様、Ping Identity はフローティング Docker イメージ タグを使用します。これは、たとえば、製品の更新が行われるたびに、 **`edge`**タグが同じ画像を参照しないことを意味します。[release tags](./releaseTags.md)のページには、エッジやその他のタグ、タグの更新頻度、製品イメージの特定のバージョンとリリースを確実に使用する方法に関する情報が含まれています。
+
+!!! note "新しいイメージタグの通知"
+    製品の Docker イメージの新しいバージョンが利用可能になったときに通知を受け取りたい場合は、docker-builds GitHub リポジトリをフォローする手順について、[FAQ ページ](../reference/faqs.md)の「Docker イメージ」セクションを参照してください。
