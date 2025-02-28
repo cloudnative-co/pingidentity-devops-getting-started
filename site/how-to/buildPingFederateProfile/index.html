@@ -1,0 +1,6172 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://devops.pingidentity.com/how-to/buildPingFederateProfile/">
+      
+      
+        <link rel="prev" href="../saveConfigs/">
+      
+      
+        <link rel="next" href="../buildPingDirectoryProfile/">
+      
+      
+      <link rel="icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>PingFederate Profile - Ping Identity DevOps</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../mkdocs/overrides/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pingfederate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Ping Identity DevOps" class="md-header__button md-logo" aria-label="Ping Identity DevOps" data-md-component="logo">
+      <!-- Logo -->
+  
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ping Identity DevOps
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PingFederate Profile
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/pingidentity/pingidentity-devops-getting-started" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pingidentity/pingidentity-devops-getting-started
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Welcome
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docker-images/dockerImagesRef/" class="md-tabs__link">
+          
+  
+  Ping Docker Images
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tools/pingctlUtil/" class="md-tabs__link">
+          
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../devopsRegistration/" class="md-tabs__link">
+          
+  
+  How To
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reference/config/" class="md-tabs__link">
+          
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../videos/videos/" class="md-tabs__link">
+          
+  
+  Videos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../release-notes/currentRelease/" class="md-tabs__link">
+          
+  
+  Release Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../reference/faqs/" class="md-tabs__link">
+        
+  
+    
+  
+  Customer FAQs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../contact-us/contributing/" class="md-tabs__link">
+          
+  
+  Contact Us
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Ping Identity DevOps" class="md-nav__button md-logo" aria-label="Ping Identity DevOps" data-md-component="logo">
+      <!-- Logo -->
+  
+    </a>
+    Ping Identity DevOps
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/pingidentity/pingidentity-devops-getting-started" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pingidentity/pingidentity-devops-getting-started
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Welcome
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Get Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Get Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../get-started/introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../get-started/prereqs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prerequisites
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../get-started/configVars/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Environment Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../get-started/getStartedExample/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy Example Stack
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deployment Examples
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3_2" id="__nav_1_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kubernetes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Kubernetes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployLocalK8sCluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a simple local Kubernetes Cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployFullK8s/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a robust local Kubernetes Cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployLocalOpenshift/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a local Openshift Cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployHelm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ping Identity Helm Charts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3_2_5" id="__nav_1_3_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Other Kubernetes Information
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Other Kubernetes Information
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployK8sClusterMetrics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample Monitoring Stack
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployK8sUtilitySidecar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Utility Sidecars
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployPFMultiRegion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy PingFederate Across Multiple Kubernetes Clusters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployPDMultiRegion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy PingDirectory Across Multiple Kubernetes Clusters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployPDProxyBackendDiscovery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy PingDirectoryProxy and PingDirectory with Automatic Backend Discovery
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployPACluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy a PingAccess Cluster Without a Server Profile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/pingDataEnvironmentConsiderations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingData Product Considerations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deploymentPatterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Operating Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployK8sCloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloud Kubernetes Platform Prerequisites
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployK8s-AWS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Peering VPCs for multi-region EKS deployments
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployK8s-AKS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Azure Kubernetes Service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/k8sClusterSizing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sizing Kubernetes Clusters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployHelmLocalIngress/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ingress on local Kind Cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/restorePDMultiRegionSeedFailure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Restoring a Multi Region PingDirectory Deployment on Seed Region Failure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3_3" id="__nav_1_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker Compose
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Docker Compose
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployCompose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Single Product Deployments
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/supportPolicy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Support Policy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/disclaimer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Disclaimer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/3rdPartySoftware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Third-Party Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/portalUpdates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Portal updates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ping Docker Images
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ping Docker Images
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/dockerImagesRef/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Product Images
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Product Images
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingaccess/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingAccess
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingauthorize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingAuthorize
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingauthorizepap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingAuthorize PAP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingbase/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingBase
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingcentral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingCentral
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingcommon/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingCommon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingdatacommon/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingDataCommon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingdataconsole/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingDataConsole
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingdatasync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingDataSync
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingdelegator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingDelegator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingdirectory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingDirectory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingdirectoryproxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingDirectoryProxy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingfederate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingFederate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingintelligence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingIntelligence
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Other Images
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Other Images
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/pingtoolkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingToolkit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/apache-jmeter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apache JMeter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/ldap-sdk-tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ldap-sdk-tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Image Details
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Image Details
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/releaseTags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Tags
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/productVersionMatrix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Product & Image Release Matrix
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/dockerImageSecurity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DevOps Image Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker-images/imageSupport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Image Support Policy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pingctlUtil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pingctl
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/ldapsdkUtil/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ldap-sdk-tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pingDevopsUtil_Deprecated/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ping-devops utility (deprecated)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pingDownloader_Deprecated/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingDownloader Image (deprecated)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    How To
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            How To
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devopsRegistration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DevOps Registration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../existingLicense/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use Existing Licenses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Server Profile
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Server Profile
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../containerAnatomy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Customization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../saveConfigs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Saving Configurations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_4" id="__nav_4_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Build Your Own
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Build Your Own
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    PingFederate Profile
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    PingFederate Profile
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめる前に
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロファイルメソッドの概要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      一括 API エクスポート プロファイル メソッド
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一括 API エクスポート プロファイル メソッド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      この方法について
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="この方法について">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      手順
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      結果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一括 API エクスポートを「プロファイルにふさわしい」ものにする
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一括 API エクスポートを「プロファイルにふさわしい」ものにする">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      一括設定ツールの使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一括設定ツールの使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      前提条件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      一括ツールの設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一括ツールの設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#search-replace" class="md-nav__link">
+    <span class="md-ellipsis">
+      search-replace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      change-value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      remove-config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      add-config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      expose-parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      config-aliases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      sort-arrays
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他の注意事項
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      構成アーカイブプロファイルメソッド
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="構成アーカイブプロファイルメソッド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      構成アーカイブベースのプロファイルについて
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      この方法について
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pingfederate-integration-kit" class="md-nav__link">
+    <span class="md-ellipsis">
+      PingFederate Integration Kitのインストール
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buildPingDirectoryProfile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingDirectory Profile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profilesLayered/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Layering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profilesSubstitution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ENV Substitution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profilesPingDataExtensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing Extensions with PingData Profiles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../privateRepos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Private Github Repos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prometheus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PingDirectory and Prometheus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usingVault/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vault/Secrets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secureContainers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Securing the Containers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Upgrading Deployments
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            Upgrading Deployments
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgradePingAccess/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrading PingAccess
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgradePingCentral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrading PingCentral
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgradePingDirectory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrading PingDirectory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgradePingfederate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrading PingFederate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migratingRootToUnprivileged/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrating to Unprivileged Images
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assignPFNodeId/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Set PingFederate Provisioner Node ID
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../addMOTD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding a MOTD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buildLocal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Local Product Image
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splunkLogging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Forward Logs to Splunk
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reEncryptPingDirectoryData/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Re-encrypting PingDirectory Backend Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s3Archive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample archive to S3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components and Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/profileStructures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server Profile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/variableScoping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Variables and Scope
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/usingCertificates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Certificates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DevOps Hook Scripts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/k8sBasics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/HelmBasics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Helm Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/containerLogging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Container Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/readOnlyFilesystem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Read Only Filesystem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/awsStorage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AWS Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_12" id="__nav_5_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deprecated
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_12">
+            <span class="md-nav__icon md-icon"></span>
+            Deprecated
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/yamlFiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Compose YAML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Videos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Videos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/videos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Release Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/currentRelease/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Current Release
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    All Releases
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            All Releases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2403/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2403
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2402/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2402
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2401/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2401
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2312/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2312
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2311/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2311
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2310/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2310
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2309/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2309
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2308-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2308.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2308/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2308
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2307-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2307.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2307/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2307
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2306/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2306
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2305/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2305
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2304/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2304
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2303/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2303
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2302/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2302
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2301/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2301
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2212/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2212
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2211/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2211
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2210/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2210
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2209/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2209
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2208/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2208
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2207/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2207
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2206/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2206
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2205/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2205
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2204/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2204
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2203/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2203
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2202/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2202
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2201/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2201
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2112/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2112
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2111-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2111.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2111/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2111
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2110/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2110
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2109/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2109
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2108/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2108
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2107/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2107
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2106/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2106
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2105/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2105
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2104/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2104
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2103/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2103
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2102/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2102
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2012/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2012
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2011
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2010/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2010
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2009/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2009
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2008/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2008
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2007/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2007
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2006/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2006
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2005/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2005
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2004/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2004
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes/relnotes-2003/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version 2003
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/faqs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Customer FAQs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Contact Us
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Contact Us
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact-us/contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact-us/community/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Community
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめる前に
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロファイルメソッドの概要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      一括 API エクスポート プロファイル メソッド
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一括 API エクスポート プロファイル メソッド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      この方法について
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="この方法について">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      手順
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      結果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一括 API エクスポートを「プロファイルにふさわしい」ものにする
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一括 API エクスポートを「プロファイルにふさわしい」ものにする">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      一括設定ツールの使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一括設定ツールの使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      前提条件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      一括ツールの設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一括ツールの設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#search-replace" class="md-nav__link">
+    <span class="md-ellipsis">
+      search-replace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      change-value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      remove-config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      add-config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      expose-parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      config-aliases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      sort-arrays
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他の注意事項
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      構成アーカイブプロファイルメソッド
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="構成アーカイブプロファイルメソッド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      構成アーカイブベースのプロファイルについて
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      この方法について
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pingfederate-integration-kit" class="md-nav__link">
+    <span class="md-ellipsis">
+      PingFederate Integration Kitのインストール
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<!--
+# Build a PingFederate profile from your current deployment
+
+The term "profile" can vary in many instances. Here we will focus on two types of profiles for PingFederate: configuration archive, and bulk export. We will discuss the similarities and differences between two as well as how to build either from a running PingFederate environment.
+-->
+
+<h1 id="pingfederate">現在のデプロイメントから PingFederate プロファイルを構築する<a class="headerlink" href="#pingfederate" title="Permanent link"> ¶</a></h1>
+<p>「プロファイル」という用語は多くの場合に異なります。ここでは、PingFederate の 2 種類のプロファイル (構成アーカイブと一括エクスポート) に焦点を当てます。 2 つの類似点と相違点、および実行中の PingFederate 環境からどちらかを構築する方法について説明します。</p>
+<!--
+## Before you begin
+
+You must:
+
+* Complete [Get Started](../get-started/introduction.md) to set up your DevOps environment and run a test deployment of the products
+* Understand our [Product Container Anatomy](../reference/config.md)
+
+You should:
+
+* Review [Customizing Server Profiles](profiles.md)
+-->
+
+<h2 id="_1">はじめる前に<a class="headerlink" href="#_1" title="Permanent link"> ¶</a></h2>
+<p>下記のことを必ず実施してください:</p>
+<ul>
+<li><a href="../../get-started/introduction/">Get Started</a>を完了して、DevOps 環境をセットアップし、製品のテスト展開を実行します。</li>
+<li><a href="../../reference/config/">Product Container Anatomy</a>を理解します。</li>
+</ul>
+<p>下記のことを実施することをお勧めします</p>
+<ul>
+<li><a href="../profiles/">Customizing Server Profiles</a>を確認する</li>
+</ul>
+<!--
+## Overview of profile methods
+
+There are two file-based profile methods that we cover:
+
+* Bulk API Export
+    * The resulting `.json` from the admin API at /bulk/export
+    * Typically saved as `data.json`
+* Configuration Archive
+    * Pulled either from the admin UI - Server > Configuration Archive or from the admin API at `/configArchive`
+    * We call the result of this output `data.zip` or the `/data` folder
+-->
+<!-- TODO INSERT LINK ON NEXT LINE FOR PF CONFIG DEPLOYMENTS -->
+<!-- Deciding which method you use should be based on how you plan to [deploy configurations updates](LINKNEEDED) -->
+<!--
+A file-based profile means a "complete profile" looks like a **subset** of files that you would typically find in a running PingFederate filesystem.
+
+This subset of files represents the minimal number of files needed to achieve your PingFederate configuration. All additional files that are not specific to your configuration should be left out because the PingFederate Docker image fills them in. For more information, see [Container Anatomy](containerAnatomy.md).
+
+Familiarity with the PingFederate filesystem will help you achieve the optimal profile. For more information, see [profile structures](../reference/profileStructures.md).
+
+!!! note "Save files"
+    You should save every file outside of `pingfederate/server/default/data` that you've edited.
+
+Additionally, all files that are included in the profile should also be environment agnostic. This typically means turning hostnames and secrets into variables that can be delivered from the [Orchestration Layer](profilesSubstitution.md).
+-->
+
+<h2 id="_2">プロファイルメソッドの概要<a class="headerlink" href="#_2" title="Permanent link"> ¶</a></h2>
+<p>ここで取り上げるファイルベースのプロファイル方法は 2 つあります。</p>
+<ul>
+<li>APIの一括エクスポート<ul>
+<li>/bulk/export にある管理 API から生成された <code>.json</code></li>
+<li>通常は <code>data.json</code> として保存されます</li>
+</ul>
+</li>
+<li>構成アーカイブ<ul>
+<li>管理 UI - Server &gt; Configuration Archive または <code>/configArchive</code> の管理 API から取得されます。</li>
+<li>この出力の結果を data.zip または <code>/data</code> フォルダーと呼びます。</li>
+</ul>
+</li>
+</ul>
+<!-- TODO INSERT LINK ON NEXT LINE FOR PF CONFIG DEPLOYMENTS -->
+<!-- Deciding which method you use should be based on how you plan to [deploy configurations updates](LINKNEEDED) -->
+
+<p>ファイルベースのプロファイルとは、「完全なプロファイル」が、実行中の PingFederate ファイルシステムで通常見つかるファイルの <strong>サブセット</strong> のように見えることを意味します。</p>
+<p>このファイルのサブセットは、PingFederate 構成を実現するために必要な最小限のファイル数を表します。構成に固有ではない追加ファイルはすべて、PingFederate Docker イメージによって埋められるため、省略する必要があります。詳細については、<a href="../containerAnatomy/">Container Anatomy</a>を参照してください。</p>
+<p>PingFederate ファイルシステムに精通していると、最適なプロファイルを実現するのに役立ちます。詳細については、<a href="../../reference/profileStructures/">profile structures</a>を参照してください。</p>
+<div class="admonition note">
+<p class="admonition-title">ファイルを保存する</p>
+<p>編集したすべてのファイルを <code>pingfederate/server/default/data</code> の外に保存する必要があります。</p>
+</div>
+<p>さらに、プロファイルに含まれるすべてのファイルも環境に依存しない必要があります。これは通常、ホスト名とシークレットを、<a href="../profilesSubstitution/">Orchestration Layer</a>から配信できる変数に変換することを意味します。</p>
+<!--
+## The Bulk API Export Profile Method
+
+### About this method
+
+You will:
+
+1. Export a `data.json` from /bulk/export
+1. Configure and run bulkconfig tool
+1. Export Key Pairs
+1. base64 encode exported key pairs
+1. Add `data.json.subst` to your profile at `instance/bulk-config/data.json.subst`
+
+> In this guide, we will look at the above steps in detail to understand the purpose and flow. Use the steps for reference as needed.
+
+A PingFederate Admin Console imports a `data.json` on startup if it finds it in `instance/bulk-config/data.json`.
+
+The PF admin API `/bulk/export` endpoint outputs a large .json blob that is representative of the entire `pingfederate/server/default/data` folder, PingFederate 'core config', or a representation of anything you would configure from the PingFedera0te UI. This file can be considered as "the configuration archive in .json format".
+-->
+
+<h2 id="api">一括 API エクスポート プロファイル メソッド<a class="headerlink" href="#api" title="Permanent link"> ¶</a></h2>
+<h3 id="_3">この方法について<a class="headerlink" href="#_3" title="Permanent link"> ¶</a></h3>
+<p>You will:</p>
+<ol>
+<li>/bulk/export から <code>data.json</code> をエクスポートする</li>
+<li>Bulkconfig ツールを構成して実行する</li>
+<li>キーペアのエクスポート</li>
+<li>エクスポートされたキーペアをbase64エンコードする</li>
+<li><code>data.json.subst</code> を、<code>instance/bulk-config/data.json.subst</code> のプロファイルに追加します。</li>
+</ol>
+<blockquote>
+<p>このガイドでは、目的と流れを理解するために、上記の手順を詳しく見ていきます。必要に応じて、手順を参照してください。</p>
+</blockquote>
+<p>PingFederate 管理コンソールは、<code>instance/bulk-config/data.json</code> で <code>data.json</code> が見つかった場合、起動時にそれをインポートします。</p>
+<p>PF 管理 API <code>/bulk/export</code> エンドポイントは、<code>pingfederate/server/default/data</code> フォルダー全体、PingFederate 'core config'、または PingFederate UI から構成するものを表す大きな .json BLOB を出力します。このファイルは、「.json 形式の構成アーカイブ」と考えることができます。</p>
+<!--
+#### Steps
+
+1. On a running PingFederate instance or pod, run:
+
+    <div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--location<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--request<span class="w"> </span>GET<span class="w"> </span><span class="s1">&#39;https://pingfederate-admin.ping-devops.com/pf-admin-api/v1/bulk/export&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s1">&#39;X-XSRF-Header: PingFederate&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="w"> </span><span class="s2">&quot;administrator:</span><span class="si">${</span><span class="nv">passsword</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>data.json
+</code></pre></div>
+
+1. Save data.json into a profile at `instance/bulk-config/data.json`.
+1. Delete everything except `pf.jwk` in `instance/server/default/data`.
+-->
+
+<h4 id="_4">手順<a class="headerlink" href="#_4" title="Permanent link"> ¶</a></h4>
+<ol>
+<li>
+<p>実行中の PingFederate instanceまたはpodで、次を実行します。</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--location<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--request<span class="w"> </span>GET<span class="w"> </span><span class="s1">&#39;https://pingfederate-admin.ping-devops.com/pf-admin-api/v1/bulk/export&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s1">&#39;X-XSRF-Header: PingFederate&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="w"> </span><span class="s2">&quot;administrator:</span><span class="si">${</span><span class="nv">passsword</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>data.json
+</code></pre></div>
+</li>
+<li>
+<p>data.json を、<code>instance/bulk-config/data.json</code> のプロファイルに保存します。</p>
+</li>
+<li><code>instance/server/default/data</code> 内の <code>pf.jwk</code> を除くすべてを削除します。</li>
+</ol>
+<!--
+#### Result
+
+You have a bulk API export "profile". This file is useful because the entire config is in a single file and if you store it in source control, then you only have to compare differences in one file. However, there is more value than being in one file.
+-->
+
+<h4 id="_5">結果<a class="headerlink" href="#_5" title="Permanent link"> ¶</a></h4>
+<p>一括 API エクスポート「profile」があります。このファイルは、構成全体が 1 つのファイル内にあり、それをソース管理に保存すると、1 つのファイル内の相違点を比較するだけで済むため便利です。ただし、1 つのファイルに存在するよりも多くの価値があります。</p>
+<!--
+### Making the bulk API export "profile-worthy"
+
+By default, the resulting `data.json` from the export contains encrypted values, and to import this file, your PingFederate needs to have the corresponding master key (`pf.jwk`) in `pingfederate/server/default/data`.
+
+!!! Note "Encrypted values in single file"
+    In the DevOps world, we call this folder `instance/server/default/data`. However, each of the encrypted values also have the option to be replaced with an unencrypted form and, when required, a corresponding password.
+-->
+
+<h3 id="api_1">一括 API エクスポートを「プロファイルにふさわしい」ものにする<a class="headerlink" href="#api_1" title="Permanent link"> ¶</a></h3>
+<p>デフォルトでは、エクスポートによって生成された <code>data.json</code> には暗号化された値が含まれており、このファイルをインポートするには、PingFederate の対応するマスター キー (<code>pf.jwk)</code> が <code>pingfederate/server/default/data</code> にある必要があります。</p>
+<div class="admonition note">
+<p class="admonition-title">単一ファイル内の暗号化された値</p>
+<p>DevOpsの世界では、このフォルダーを <code>instance/server/default/data</code> と呼びます。ただし、暗号化された各値には、暗号化されていない形式と、必要に応じて対応するパスワードに置き換えるオプションもあります。</p>
+</div>
+<!--
+#### Example
+
+The SSL Server Certificate from the [PingFederate Baseline Profile](https://github.com/pingidentity/pingidentity-server-profiles/tree/master/baseline/pingfederate) when exported to data.json has the following syntax:
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/keyPairs/sslServer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;operationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAVE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sslservercert&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;fileData&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MIIRBwIBAzCCEMAGCSqGSIb3DQEHAaCCELEEghCtMIIQqTCCCeUGCSqGSIb3DQEHAaCCCdYEggnSMIIJzjCCCcoGCyqGSIb3DQEMCgECoIIJezCCCXcwKQYKKoZIhvcNAQwBAzAbBBQu6vDERQZX3uujWa7v_q3sYN4Q0gIDAMNQBIIJSFtdWbvLhzYrTqeKKiJqiqROgE0E4mkVvmEC6NwhhPbcH37IDNvVLu0umm--CDZnEmlyPpUucO345-U-6z-cskw4TbsjYIzM10MwS6JdsyYFTC3GwqioqndVgBUzDh8xGnfzx52zEehX8d-ig1F6xYsbEc01gTbh4lF5MA7E7VfoTa4hWqtceV8PQeqzJNarlZyDSaS5BLn1J6G9BYUze-M1xGhATz7F2l-aAt6foi0mwIBlc2fwsdEPuAALZgdG-q_V4gOJW2K0ONnmWhMgMLpCL42cmSb</span>
+<span class="s2">            ... more encrypted text ...</span>
+<span class="s2">            Yxpzp_srpy4LHNdgHqhVBhqtDrjeKJDRfc1yk21P5PpfEBxn5MD4wITAJBgUrDgMCGgUABBQLBpq8y79Pq1TzG1Xf6OAjZzBZaQQUC4kD4CkcrH-WTQhJHud850ddn08CAwGGoA==&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;encryptedPassword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiRW1JY1UxOVdueSIsInZlcnNpb24iOiIxMC4xLjEuMCJ9..l6PJ55nSSvKHl0vSWTpkOA.i7hpnnu2yIByhyq_aGBCdaqS3u050yG8eMRGnLRx2Yk.Mo4WSkbbJyLISHq6i4nlVA&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+You can convert this master key dependent form to:
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;operationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAVE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">        </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2FederateM0re&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;fileData&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MIIRCQIBAzCCEM8GCSqGSIb3DQEHAaCCEMAEghC8MIIQuDCCC28GCSqGSIb3DQEHBqCCC2AwggtcAgEAMIILVQYJKoZIhvcNAQcBMBwGCiqGSIb3DQEMAQYwDgQIjXWLRGuGNIQCAggAgIILKOgCQ9onDqBPQsshsaS50OjWtj\/7s47BUYal1YhO70fBup1a82WGHGhAvb\/SY1yOhqQR+TloEBOPI5cExoGN\/Gvw2Mw5\/wkQZZMSHqxjz68KhN4B0hrsOf4rqShB7jsz9ebSml3r2w0sUZWR73GBtBt1Y3wIlXLS2WtqdtHra9VnUqp1eOk+xenjuWM+u2ndDD43GgKB3n8mNBSSVBqx6ne7aSRJRuAUd+HAzLvSeXjTPMObI1Jod2F+7</span>
+<span class="s2">        ... more base64 encoded exported .p12 ...</span>
+<span class="s2">        5QJ15OJp2iEoVBWxogKf64s2F0iIYPoo6yjNvlidZCevP564FwknWrHoD7R8cIBrhlCJQbEOpOhPg66r4MK1CeJ2poaKRlMS8HGcMRaTpaqD+pIlgmUS6xFw49vr9Kwfb7KteRsTkNR+I8A7HjUpuCMSUwIwYJKoZIhvcNAQkVMRYEFOb7g1xwDka5fJ4sqngEvzTyuWnpMDEwITAJBgUrDgMCGgUABBRlJ+D+FR\/vQbaTGbKDFiBK\/xDbqQQIAjLc+GgRg44CAggA&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sslservercert&quot;</span>
+<span class="w">    </span><span class="p">}],</span>
+<span class="w">    </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/keyPairs/sslServer&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+The process:
+
+1. You exported the private key+cert of the server cert with alias `sslservercert`. When exported, a password is requested and `2FederateM0re` was used. This action results in the download of a password protected `.p12` file.
+1. The data.json key name `encryptedPassword` converted to simply `password`.
+1. The value for `fileData` is replaced with a base64 encoded version of the exported `.p12` file.
+
+This process can be used for all encrypted items and environment specific items:
+
+* Key Pairs (.p12)
+* Trusted Certs (x509)
+* Admin Password
+* Data Store Passwords
+* Integration Kit Properties
+* Hostnames
+
+Leaving these confidential items as unencrypted text in source control is unacceptable. The next logical step is to abstract the unencrypted values and replace them with variables. By doing this, the values can be stored in a secrets management tool (such as Hashicorp Vault) and the variablized file can be in source control.
+
+Converting each of the encrypted keys for their unencrypted counterparts and hostnames with variables is cumbersome and can be automated. As we know in DevOps, if it _can_ be automated, it _must_ be automated. For more information, see [Using Bulk Config Tool](#using-bulk-config-tool).
+
+A variablized `data.json.subst` is a good candidate for committing to source control after removing any unencrypted text.
+-->
+
+<h4 id="_6">例<a class="headerlink" href="#_6" title="Permanent link"> ¶</a></h4>
+<p><a href="https://github.com/pingidentity/pingidentity-server-profiles/tree/master/baseline/pingfederate">PingFederate ベースライン プロファイル</a>からの SSL サーバー証明書を data.json にエクスポートするときの構文は次のとおりです。</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/keyPairs/sslServer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;operationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAVE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sslservercert&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;fileData&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MIIRBwIBAzCCEMAGCSqGSIb3DQEHAaCCELEEghCtMIIQqTCCCeUGCSqGSIb3DQEHAaCCCdYEggnSMIIJzjCCCcoGCyqGSIb3DQEMCgECoIIJezCCCXcwKQYKKoZIhvcNAQwBAzAbBBQu6vDERQZX3uujWa7v_q3sYN4Q0gIDAMNQBIIJSFtdWbvLhzYrTqeKKiJqiqROgE0E4mkVvmEC6NwhhPbcH37IDNvVLu0umm--CDZnEmlyPpUucO345-U-6z-cskw4TbsjYIzM10MwS6JdsyYFTC3GwqioqndVgBUzDh8xGnfzx52zEehX8d-ig1F6xYsbEc01gTbh4lF5MA7E7VfoTa4hWqtceV8PQeqzJNarlZyDSaS5BLn1J6G9BYUze-M1xGhATz7F2l-aAt6foi0mwIBlc2fwsdEPuAALZgdG-q_V4gOJW2K0ONnmWhMgMLpCL42cmSb</span>
+<span class="s2">            ... more encrypted text ...</span>
+<span class="s2">            Yxpzp_srpy4LHNdgHqhVBhqtDrjeKJDRfc1yk21P5PpfEBxn5MD4wITAJBgUrDgMCGgUABBQLBpq8y79Pq1TzG1Xf6OAjZzBZaQQUC4kD4CkcrH-WTQhJHud850ddn08CAwGGoA==&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;encryptedPassword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiRW1JY1UxOVdueSIsInZlcnNpb24iOiIxMC4xLjEuMCJ9..l6PJ55nSSvKHl0vSWTpkOA.i7hpnnu2yIByhyq_aGBCdaqS3u050yG8eMRGnLRx2Yk.Mo4WSkbbJyLISHq6i4nlVA&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>このマスターキーに依存する形式は次のように変換できます。</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/keyPairs/sslServer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;operationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAVE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sslservercert&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2FederateM0re&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;fileData&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MIIRCQIBAzCCEM8GCSqGSIb3DQEHAaCCEMAEghC8MIIQuDCCC28GCSqGSIb3DQEHBqCCC2AwggtcAgEAMIILVQYJKoZIhvcNAQcBMBwGCiqGSIb3DQEMAQYwDgQIjXWLRGuGNIQCAggAgIILKOgCQ9onDqBPQsshsaS50OjWtj\/7s47BUYal1YhO70fBup1a82WGHGhAvb\/SY1yOhqQR+TloEBOPI5cExoGN\/Gvw2Mw5\/wkQZZMSHqxjz68KhN4B0hrsOf4rqShB7jsz9ebSml3r2w0sUZWR73GBtBt1Y3wIlXLS2WtqdtHra9VnUqp1eOk+xenjuWM+u2ndDD43GgKB3n8mNBSSVBqx6ne7aSRJRuAUd+HAzLvSeXjTPMObI1Jod2F+7</span>
+<span class="s2">            ... more base64 encoded exported .p12 ...</span>
+<span class="s2">            5QJ15OJp2iEoVBWxogKf64s2F0iIYPoo6yjNvlidZCevP564FwknWrHoD7R8cIBrhlCJQbEOpOhPg66r4MK1CeJ2poaKRlMS8HGcMRaTpaqD+pIlgmUS6xFw49vr9Kwfb7KteRsTkNR+I8A7HjUpuCMSUwIwYJKoZIhvcNAQkVMRYEFOb7g1xwDka5fJ4sqngEvzTyuWnpMDEwITAJBgUrDgMCGgUABBRlJ+D+FR\/vQbaTGbKDFiBK\/xDbqQQIAjLc+GgRg44CAggA&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>手順:</p>
+<ol>
+<li>サーバー証明書の秘密キーと証明書を別名 <code>sslservercert</code> でエクスポートしました。エクスポート時にパスワードが要求され、<code>2FederateM0re</code> が使用されました。この操作により、パスワードで保護された <code>.p12</code> ファイルがダウンロードされます。</li>
+<li>data.json キー名 <code>encryptedPassword</code> が単純な <code>password</code> に変換されました。</li>
+<li><code>fileData</code> の値は、エクスポートされた <code>.p12</code> ファイルの Base64 でエンコードされたバージョンに置き換えられます。</li>
+</ol>
+<p>この手順は、すべての暗号化されたアイテムと環境固有のアイテムに使用できます。</p>
+<ul>
+<li>Key Pairs (.p12)</li>
+<li>Trusted Certs (x509)</li>
+<li>Admin Password</li>
+<li>Data Store Passwords</li>
+<li>Integration Kit Properties</li>
+<li>Hostnames</li>
+</ul>
+<p>これらの機密項目を暗号化されていないテキストとしてソース管理に残すことは容認できません。次の論理的なステップは、暗号化されていない値を抽象化し、変数に置き換えることです。これにより、値をシークレット管理ツール (Hashicorp Vault など) に保存し、可変ファイルをソース管理に含めることができます。</p>
+<p>暗号化されたキーを、暗号化されていないキーと変数を使用してホスト名にそれぞれ変換するのは面倒ですが、自動化できます。 DevOps でわかるように、自動化できる場合は自動化する必要があります。詳細については、<a href="#using-bulk-config-tool">一括設定ツールの使用</a>を参照してください。</p>
+<p>可変化された <code>data.json.subst</code> は、暗号化されていないテキストを削除した後にソース管理にコミットするのに適した候補です。</p>
+<!--
+### Using Bulk Config Tool
+
+The [ping-bulkconfig-tool](https://github.com/pingidentity/pingidentity-devops-getting-started/tree/master/99-helper-scripts/ping-bulkconfigtool) reads your data.json and can optionally:
+
+  - Search and replace (e.g. hostnames)
+  - Clean, add, and remove json members as required.
+  - Tokenize the configuration and maintain environment variables.
+
+The bulk export tool can process a bulk `data.json` export according to a configuration file with functions above. After running the tool, you are left with a `data.json.subst` and a list of environment variables waiting to be filled.
+
+The `data.json.subst` form of our previous example will look like:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;operationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAVE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">        </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${keyPairs_sslServer_items_sslservercert_sslservercert_password}&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;fileData&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${keyPairs_sslServer_items_sslservercert_sslservercert_fileData}&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sslservercert&quot;</span>
+<span class="w">    </span><span class="p">}],</span>
+<span class="w">    </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/keyPairs/sslServer&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+!!! Note "Bulk Config Tool Limitations"
+    The bulk config tool can manipulate data.json but it cannot populate the resulting password or fileData variables because there is no API available on PingFederate to extract these. These variables can be filled using with externally generated certs and keys using tools like `openssl`, but that is out of scope for this document.
+
+The resulting `env_vars` file can be used as a guideline for secrets that should be managed externally and only delivered to the container/image as needed for its specific environment.
+-->
+
+<h3 id="_7">一括設定ツールの使用<a class="headerlink" href="#_7" title="Permanent link"> ¶</a></h3>
+<p><a href="https://github.com/pingidentity/pingidentity-devops-getting-started/tree/master/99-helper-scripts/ping-bulkconfigtool">ping-bulkconfig-tool</a> は data.json を読み取り、オプションで次のことを実行できます。</p>
+<ul>
+<li>検索と置換 (hostnameなど)</li>
+<li>必要に応じて、json メンバーをクリーンアップ、追加、削除します。</li>
+<li>構成をトークン化し、環境変数を維持します。</li>
+</ul>
+<p>一括エクスポート ツールは、上記の機能を備えた構成ファイルに従って、<code>data.json</code> の一括エクスポートを処理できます。ツールを実行すると、<code>data.json.subst</code> と、入力を待つ環境変数のリストが残ります。</p>
+<p>前の例の <code>data.json.subst</code> フォームは次のようになります。
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/keyPairs/sslServer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;operationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAVE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sslservercert&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${keyPairs_sslServer_items_sslservercert_sslservercert_password}&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;fileData&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${keyPairs_sslServer_items_sslservercert_sslservercert_fileData}&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">一括構成ツールの制限事項</p>
+<p>一括構成ツールは data.json を操作できますが、結果として得られるパスワードや fileData 変数を設定することはできません。これは、PingFederate にはこれらを抽出するために使用できる API がないためです。これらの変数は、<code>openssl</code> などのツールを使用して外部で生成された証明書とキーを使用して入力できますが、それはこのドキュメントの範囲外です。</p>
+</div>
+<p>結果として得られる <code>env_vars</code> ファイルは、外部で管理し、特定の環境で必要な場合にのみコンテナ/イメージに配信する必要があるシークレットのガイドラインとして使用できます。</p>
+<!--
+#### Prerequisites
+-->
+
+<!-- TODO: This docker image should be next to the rest of our images -->
+
+<!--
+1. The bulk export utility comes in pre-compiled source code. Build a Docker image by running:
+
+   ```
+    docker build -t ping-bulkexport-tools:latest .
+    ```
+
+2. Copy the [data.json](#steps) to: `pingidentity-devops-getting-started/99-helper-scripts/ping-bulkconfigtool/shared/data.json`
+-->
+
+<h4 id="_8">前提条件<a class="headerlink" href="#_8" title="Permanent link"> ¶</a></h4>
+<!-- TODO: This docker image should be next to the rest of our images -->
+
+<ol>
+<li>一括エクスポート ユーティリティは、コンパイル済みのソース コードで提供されます。以下を実行して Docker イメージをビルドします。</li>
+</ol>
+<p><code>docker build -t ping-bulkexport-tools:latest .</code></p>
+<ol>
+<li><a href="#手順">data.json</a> を <code>pingidentity-devops-getting-started/99-helper-scripts/ping-bulkconfigtool/shared/data.json</code> にコピーします。</li>
+</ol>
+<!--
+#### Example
+
+A sample command of the ping-bulkconfig-tool
+
+<div class="highlight"><pre><span></span><code>docker run --rm -v $PWD/shared:/shared ping-bulkexport-tools:latest /shared/pf-config.json /shared/data.json /shared/env_vars /shared/data.json.subst &gt; ./shared/convert.log
+</code></pre></div>
+
+Where:
+
+- `-v $PWD/shared:/shared` - bind mounts `ping-bulkconfigtool/shared` folder to /shared in the container
+- `/shared/pf-config.json` - input path to [config file](#configure-bulk-tool) which defines how to process the bulk export `data.json` file from PingFederate.
+- `/shared/data.json` - input path to data.json result of /pf-admin-api/v1/bulk/export PingFederate API endpoint.
+- `/shared/env_vars` - output path to store environment variables generated from processing
+- `/shared/data.json.subst` - output path to processed data.json
+
+After running the above command, you will see `env_vars` and `data.json.subst` in the `ping-bulkconfigtool/shared` folder.
+-->
+
+<h4 id="_9">例<a class="headerlink" href="#_9" title="Permanent link"> ¶</a></h4>
+<p>ping-bulkconfig-tool のサンプル コマンド</p>
+<div class="highlight"><pre><span></span><code>docker run --rm -v $PWD/shared:/shared ping-bulkexport-tools:latest /shared/pf-config.json /shared/data.json /shared/env_vars /shared/data.json.subst &gt; ./shared/convert.log
+</code></pre></div>
+<p>Where:</p>
+<ul>
+<li><code>-v $PWD/shared:/shared</code> - バインドは、 <code>ping-bulkconfigtool/shared</code> フォルダーをコンテナ内の /shared にマウントします</li>
+<li><code>/shared/pf-config.json</code> - PingFederate からの一括エクスポート data.json ファイルの処理方法を定義する<a href="#一括ファイルの設定">構成ファイル</a>への入力パス。</li>
+<li><code>/shared/data.json</code> - /pf-admin-api/v1/bulk/export PingFederate API エンドポイントの data.json 結果への入力パス。</li>
+<li><code>/shared/env_vars</code> - 処理で生成された環境変数を保存する出力パス</li>
+<li><code>/shared/data.json.subst</code> - 処理された data.json への出力パス</li>
+</ul>
+<p>上記のコマンドを実行すると、<code>ping-bulkconfigtool/shared</code> フォルダーに <code>env_vars</code> と <code>data.json.subst</code> が表示されます。</p>
+<!--
+#### Configure Bulk Tool
+Instructions to the bulk config tool are sent by the `pf-config.json` file.  
+
+When using the `pf-config.json` file, any unused functions will require an empty array in the file.  For example, notice the **add-config** block at the top of this sample:
+
+<div class="highlight"><pre><span></span><code><span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;add-config&quot;</span>:<span class="o">[]</span>,
+<span class="w">  </span><span class="s2">&quot;config-aliases&quot;</span>:<span class="o">[</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;expose-parameters&quot;</span>:<span class="o">[</span>
+<span class="w">  </span><span class="o">]</span>
+<span class="w">  </span>,
+<span class="w">  </span><span class="s2">&quot;remove-config&quot;</span>:<span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;key&quot;</span>:<span class="w"> </span><span class="s2">&quot;id&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;value&quot;</span>:<span class="w"> </span><span class="s2">&quot;ProvisionerDS&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div>
+
+In this file, available commands include:
+-->
+
+<h4 id="_10">一括ツールの設定<a class="headerlink" href="#_10" title="Permanent link"> ¶</a></h4>
+<p>一括構成ツールへの指示は、<code>pf-config.json</code> ファイルによって送信されます。</p>
+<p><code>pf-config.json</code> ファイルを使用する場合、未使用の関数にはファイル内に空の配列が必要です。たとえば、このサンプルの先頭にある <strong>add-config</strong> ブロックに注目してください。</p>
+<div class="highlight"><pre><span></span><code><span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;add-config&quot;</span>:<span class="o">[]</span>,
+<span class="w">  </span><span class="s2">&quot;config-aliases&quot;</span>:<span class="o">[</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;expose-parameters&quot;</span>:<span class="o">[</span>
+<span class="w">  </span><span class="o">]</span>
+<span class="w">  </span>,
+<span class="w">  </span><span class="s2">&quot;remove-config&quot;</span>:<span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;key&quot;</span>:<span class="w"> </span><span class="s2">&quot;id&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;value&quot;</span>:<span class="w"> </span><span class="s2">&quot;ProvisionerDS&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>このファイルで使用できるコマンドは次のとおりです。</p>
+<!--
+##### search-replace
+- A utility to search and replace string values in a bulk config json file.
+- Can expose environment variables.
+
+Example: replacing an expected base hostname with a substitution:
+<div class="highlight"><pre><span></span><code>  &quot;search-replace&quot;:[
+    {
+      &quot;search&quot;: &quot;data-holder.local&quot;,
+      &quot;replace&quot;: &quot;${BASE_HOSTNAME}&quot;,
+      &quot;apply-env-file&quot;: false
+    }
+  ]
+</code></pre></div>
+-->
+
+<h5 id="search-replace">search-replace<a class="headerlink" href="#search-replace" title="Permanent link"> ¶</a></h5>
+<ul>
+<li>一括構成 JSON ファイル内の文字列値を検索および置換するユーティリティ。</li>
+<li>環境変数を公開できる。</li>
+</ul>
+<p>例: 予想される基本ホスト名を置換で置き換えます。
+<div class="highlight"><pre><span></span><code>  &quot;search-replace&quot;:[
+    {
+      &quot;search&quot;: &quot;data-holder.local&quot;,
+      &quot;replace&quot;: &quot;${BASE_HOSTNAME}&quot;,
+      &quot;apply-env-file&quot;: false
+    }
+  ]
+</code></pre></div></p>
+<!--
+##### change-value
+- Searches for elements with a matching identifier, and updates a parameter with a new value.
+
+Example: update keyPairId against an element with name=ENGINE:
+<div class="highlight"><pre><span></span><code>  &quot;change-value&quot;:[
+    {
+          &quot;matching-identifier&quot;:
+          {
+            &quot;id-name&quot;: &quot;name&quot;,
+            &quot;id-value&quot;: &quot;ENGINE&quot;
+          },
+      &quot;parameter-name&quot;: &quot;keyPairId&quot;,
+      &quot;new-value&quot;: 8
+    }
+  ]
+</code></pre></div>
+-->
+
+<h5 id="change-value">change-value<a class="headerlink" href="#change-value" title="Permanent link"> ¶</a></h5>
+<ul>
+<li>一致する識別子を持つ要素を検索し、パラメーターを新しい値で更新します。</li>
+</ul>
+<p>例: name=ENGINE の要素に対して keyPairId を更新します。
+<div class="highlight"><pre><span></span><code>  &quot;change-value&quot;:[
+    {
+          &quot;matching-identifier&quot;:
+          {
+            &quot;id-name&quot;: &quot;name&quot;,
+            &quot;id-value&quot;: &quot;ENGINE&quot;
+          },
+      &quot;parameter-name&quot;: &quot;keyPairId&quot;,
+      &quot;new-value&quot;: 8
+    }
+  ]
+</code></pre></div></p>
+<!--
+##### remove-config
+- Remove configuration objects from the bulk export
+
+Example: To remove the ProvisionerDS data store:
+<div class="highlight"><pre><span></span><code>  &quot;remove-config&quot;:[
+    {
+      &quot;key&quot;: &quot;id&quot;,
+      &quot;value&quot;: &quot;ProvisionerDS&quot;
+    }
+  ]
+</code></pre></div>
+
+Example: To remove all SP Connections:
+<div class="highlight"><pre><span></span><code>  &quot;remove-config&quot;:[
+    {
+      &quot;key&quot;: &quot;resourceType&quot;,
+      &quot;value&quot;: &quot;/idp/spConnections&quot;
+    }
+  ]
+</code></pre></div>
+-->
+
+<h5 id="remove-config">remove-config<a class="headerlink" href="#remove-config" title="Permanent link"> ¶</a></h5>
+<ul>
+<li>一括エクスポートから構成オブジェクトを削除する</li>
+</ul>
+<p>例: ProvisionerDS データ ストアを削除するには:
+<div class="highlight"><pre><span></span><code>  &quot;remove-config&quot;:[
+    {
+      &quot;key&quot;: &quot;id&quot;,
+      &quot;value&quot;: &quot;ProvisionerDS&quot;
+    }
+  ]
+</code></pre></div></p>
+<p>例: すべての SP Connectionを削除するには:
+<div class="highlight"><pre><span></span><code>  &quot;remove-config&quot;:[
+    {
+      &quot;key&quot;: &quot;resourceType&quot;,
+      &quot;value&quot;: &quot;/idp/spConnections&quot;
+    }
+  ]
+</code></pre></div></p>
+<!--
+##### add-config
+- Add configurations to the bulk export.
+
+This tool works with both PingFederate and PingAccess.  This example adds the CONFIG QUERY http listener in PingAccess:
+<div class="highlight"><pre><span></span><code>  &quot;add-config&quot;:[
+      {
+        &quot;resourceType&quot;: &quot;httpsListeners&quot;,
+        &quot;item&quot;:
+            {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;CONFIG QUERY&quot;,
+                &quot;keyPairId&quot;: 5,
+                &quot;useServerCipherSuiteOrder&quot;: true,
+                &quot;restartRequired&quot;: false
+            }
+      }
+  ]
+</code></pre></div>
+
+Example: Add an SP connection:
+<div class="highlight"><pre><span></span><code>  &quot;add-config&quot;:[
+      {
+        &quot;resourceType&quot;: &quot;/idp/spConnections&quot;,
+        &quot;item&quot;:
+        {
+                    &quot;name&quot;: &quot;httpbin3.org&quot;,
+                    &quot;active&quot;: false,
+            ...
+        }
+      }
+  ]
+</code></pre></div>
+-->
+
+<h5 id="add-config">add-config<a class="headerlink" href="#add-config" title="Permanent link"> ¶</a></h5>
+<ul>
+<li>一括エクスポートに構成を追加します。</li>
+</ul>
+<p>このツールは、PingFederate と PingAccess の両方で動作します。この例では、PingAccess に CONFIG QUERY http リスナーを追加します。</p>
+<div class="highlight"><pre><span></span><code>  &quot;add-config&quot;:[
+      {
+        &quot;resourceType&quot;: &quot;httpsListeners&quot;,
+        &quot;item&quot;:
+            {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;CONFIG QUERY&quot;,
+                &quot;keyPairId&quot;: 5,
+                &quot;useServerCipherSuiteOrder&quot;: true,
+                &quot;restartRequired&quot;: false
+            }
+      }
+  ]
+</code></pre></div>
+<p>例: SP Connectionを追加します。
+<div class="highlight"><pre><span></span><code>  &quot;add-config&quot;:[
+      {
+        &quot;resourceType&quot;: &quot;/idp/spConnections&quot;,
+        &quot;item&quot;:
+        {
+                    &quot;name&quot;: &quot;httpbin3.org&quot;,
+                    &quot;active&quot;: false,
+            ...
+        }
+      }
+  ]
+</code></pre></div></p>
+<!--
+##### expose-parameters
+- Navigates through the JSON and exchanges values for substitions.
+- Exposed substition names will be automatically created based on the json path.
+    - E.g. ${oauth_clients_items_clientAuth_testclient_secret}
+- Can convert encrypted/obfuscated values into clear text inputs (e.g. "encryptedValue" to "value") prior to substituting it. Doing so enables the injection of values in their raw form.
+
+Example: replace the "encryptedPassword" member with a substitution-enabled "password" member for any elements with "id" or "username" members. The following will remove "encryptedPassword" and create "password": "${...}":
+<div class="highlight"><pre><span></span><code>    {
+      &quot;parameter-name&quot;: &quot;encryptedPassword&quot;,
+      &quot;replace-name&quot;: &quot;password&quot;,
+      &quot;unique-identifiers&quot;: [
+          &quot;id&quot;,
+          &quot;username&quot;
+      ]
+    }
+</code></pre></div>
+-->
+
+<h5 id="expose-parameters">expose-parameters<a class="headerlink" href="#expose-parameters" title="Permanent link"> ¶</a></h5>
+<ul>
+<li>JSON 内を移動し、置換の値を交換します。</li>
+<li>公開された置換名は、json パスに基づいて自動的に作成されます。<ul>
+<li>例えば。 ${oauth_clients_items_clientAuth_testclient_secret}</li>
+</ul>
+</li>
+<li>暗号化/難読化された値を、置換する前にクリア テキスト入力に変換できます (例: "encryptedValue" から "value")。そうすることで、値を生の形式で注入できるようになります。</li>
+</ul>
+<p>Example: replace the "encryptedPassword" member with a substitution-enabled "password" member for any elements with "id" or "username" members. The following will remove "encryptedPassword" and create "password": "${...}":
+例: 「id」または「username」メンバーを持つ要素の「encryptedPassword」メンバーを置換可能な「password」メンバーに置き換えます。以下は、「encryptedPassword」を削除し、「password」「${...}」を作成します。
+<div class="highlight"><pre><span></span><code>    {
+      &quot;parameter-name&quot;: &quot;encryptedPassword&quot;,
+      &quot;replace-name&quot;: &quot;password&quot;,
+      &quot;unique-identifiers&quot;: [
+          &quot;id&quot;,
+          &quot;username&quot;
+      ]
+    }
+</code></pre></div></p>
+<!--
+##### config-aliases
+- The bulk config tool generates substitution names. However, there might be times you wish to simplify them or reuse existing environment variables.
+
+Example: Rename the Administrator's substitution name using the PING_IDENTITY_PASSWORD environment variable:
+<div class="highlight"><pre><span></span><code>  &quot;config-aliases&quot;:[
+    {
+      &quot;config-names&quot;:[
+        &quot;administrativeAccounts_items_Administrator_password&quot;
+      ],
+      &quot;replace-name&quot;: &quot;PING_IDENTITY_PASSWORD&quot;,
+      &quot;is-apply-envfile&quot;: false
+    }
+  ]
+</code></pre></div>
+-->
+
+<h5 id="config-aliases">config-aliases<a class="headerlink" href="#config-aliases" title="Permanent link"> ¶</a></h5>
+<ul>
+<li>一括構成ツールは置換名を生成します。ただし、環境変数を簡素化したり、既存の環境変数を再利用したりしたい場合もあります。</li>
+</ul>
+<p>例: PING_IDENTITY_PASSWORD 環境変数を使用して、管理者の代替名を変更します。</p>
+<div class="highlight"><pre><span></span><code>  &quot;config-aliases&quot;:[
+    {
+      &quot;config-names&quot;:[
+        &quot;administrativeAccounts_items_Administrator_password&quot;
+      ],
+      &quot;replace-name&quot;: &quot;PING_IDENTITY_PASSWORD&quot;,
+      &quot;is-apply-envfile&quot;: false
+    }
+  ]
+</code></pre></div>
+<!--
+##### sort-arrays
+- Configure the array members that need to be sorted. This function ensures the array is created consistently, simplifying git diff analysis.
+
+Example: Sort the roles and scopes arrays:
+<div class="highlight"><pre><span></span><code>  &quot;sort-arrays&quot;:[
+        &quot;roles&quot;,&quot;scopes&quot;
+  ]
+</code></pre></div>
+-->
+
+<h5 id="sort-arrays">sort-arrays<a class="headerlink" href="#sort-arrays" title="Permanent link"> ¶</a></h5>
+<ul>
+<li>並べ替える必要がある配列メンバーを構成します。この関数により、配列が一貫して作成され、git diff 分析が簡素化されます。</li>
+</ul>
+<p>例: ロールとスコープの配列を並べ替えます。
+<div class="highlight"><pre><span></span><code>  &quot;sort-arrays&quot;:[
+        &quot;roles&quot;,&quot;scopes&quot;
+  ]
+</code></pre></div></p>
+<!-- ####TODO:  Script It
+
+If desired, use of the bulk config tool can be included in a script. `pingidentity-devops-getting-started/99-helper-scripts/ping-bulkconfigtool/pf-profile.sh` is an example of this.
+
+```
+sh pf-profile.sh --release mypingfed --password 2FederateM0re
+``` -->
+
+<!--
+### Additional Notes
+
+* The bulk API export is intended to be used as a _bulk_ import. The `/bulk/import` endpoint is destructive and overwrites the entire current admin config.
+* If you are in a clustered environment, the PingFederate image imports the `data.json` and replicates the configuration to engines in the cluster.
+* Your data.json.subst `"metadata": {"pfVersion": "10.1.2.0"}` should match the PingFederate profile version.
+-->
+
+<h3 id="_11">その他の注意事項<a class="headerlink" href="#_11" title="Permanent link"> ¶</a></h3>
+<ul>
+<li>一括 API エクスポートは、<em>一括</em> インポートとして使用することを目的としています。 <code>/bulk/import</code> エンドポイントは破壊的であり、現在の管理構成全体を上書きします。</li>
+<li>クラスター環境にいる場合、PingFederate イメージは data.json をインポートし、クラスター内のエンジンに構成をレプリケートします。</li>
+<li>data.json.substの <code>"metadata": {"pfVersion": "10.1.2.0"}</code>は、PingFederate プロファイルのバージョンと一致する必要があります。</li>
+</ul>
+<!--
+## The Configuration Archive Profiles Method
+
+### About configuration archive-based profiles
+You should weigh the pros and cons of configuration archive-based profiles compared to bulk API export profiles. While not fully aligning with pur DevOps principles, many users prefer using bulk API export profiles in most scenarios.
+
+Pros:
+* The `/data` folder, as opposed to a `data.json` file, is better for [profile layering](profilesLayered.md).
+* Configuration is available on engines at startup, which:
+    * lowers dependency on the admin at initial cluster startup
+
+Cons:
+
+* The `/data` folder contains key pairs in a `.jks` file , which makes externally managing keys very difficult.
+* Encrypted data is scattered throughout the folder, creating a dependency on the master encryption key.
+-->
+
+<h2 id="_12">構成アーカイブプロファイルメソッド<a class="headerlink" href="#_12" title="Permanent link"> ¶</a></h2>
+<h3 id="_13">構成アーカイブベースのプロファイルについて<a class="headerlink" href="#_13" title="Permanent link"> ¶</a></h3>
+<p>一括 API エクスポート プロファイルと比較して、構成アーカイブ ベースのプロファイルの長所と短所を比較検討する必要があります。純粋な DevOps 原則と完全に一致しているわけではありませんが、多くのユーザーは、ほとんどのシナリオで一括 API エクスポート プロファイルの使用を好みます。</p>
+<p>Pros:</p>
+<ul>
+<li><code>data.json</code> ファイルとは対照的に、<code>/data</code> フォルダーは<a href="../profilesLayered/">プロファイルの階層化</a>に適しています。</li>
+<li>設定はエンジンの起動時に利用できます。<ul>
+<li>クラスターの初期起動時の管理者への依存度を下げる</li>
+</ul>
+</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li><code>/data</code> フォルダーには <code>.jks</code> ファイル内のキー ペアが含まれているため、外部からキーを管理することが非常に困難になります。</li>
+<li>暗号化されたデータはフォルダー全体に分散され、マスター暗号化キーへの依存関係が作成されます。</li>
+</ul>
+<!--
+### About this method
+
+You will:
+
+1. Export a `data.zip` archive
+1. Optionally, variablize
+1. Replace the data folder
+-->
+
+<h3 id="_14">この方法について<a class="headerlink" href="#_14" title="Permanent link"> ¶</a></h3>
+<p>下記のようにします。</p>
+<ol>
+<li>data.zip アーカイブをエクスポートする</li>
+<li>必要に応じて変数化します</li>
+<li>データフォルダーを置き換える</li>
+</ol>
+<!-- 1. Export a configuration archive.
+This can be done through the UI `System > Server > Configuration Archive`
+Or via Admin API:
+  ```
+  curl -u administrator:2FederateM0re -H "X-XSRF-Header: PingFederate" -k https://pingfederate-admin.com/pf-admin-api/v1/configArchive/export --output "${HOME}/Downloads/data.zip"
+  ```
+
+  ```
+  unzip -d data /path/to/data.zip
+  ``` -->
+
+<!--
+## Installing PingFederate Integration Kits
+
+By default, PingFederate is shipped with a handful of integration kits and adapters. If you need other integration kits or adapters in the deployment, manually download them and place them inside the `server/default/deploy` directory of the server profile. You can find these resources in the product download page [here](https://www.pingidentity.com/en/resources/downloads/pingfederate.html).
+-->
+
+<h2 id="pingfederate-integration-kit">PingFederate Integration Kitのインストール<a class="headerlink" href="#pingfederate-integration-kit" title="Permanent link"> ¶</a></h2>
+<p>デフォルトでは、PingFederate にはいくつかのIntegration KitとAdapterが同梱されています。デプロイメントで他のIntegration KitまたはAdapterが必要な場合は、それらを手動でダウンロードし、サーバー プロファイルの <code>server/default/deploy</code> ディレクトリ内に配置します。これらのリソースは、<a href="https://www.pingidentity.com/en/resources/downloads/pingfederate.html">ここ</a>の製品ダウンロード ページにあります。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Copyright 2024 Ping Identity
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "instant", "navigation.top"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
