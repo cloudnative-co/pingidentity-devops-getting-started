@@ -63,10 +63,10 @@ This section will cover the **kind** installation process. See the [section furt
 * マシン上で80と443ポートが利用可能であること
 
 !!! note "Kubernetes バージョン"
-    このガイドでは、Kubernetes 1.29.1 のkindの実装が使用されます。これは、kindバージョン 0.21.0 を使用してデプロイされます。
+    このガイドでは、Kubernetes 1.32.0 のkindの実装が使用されます。これは、kindバージョン 0.26.0 を使用してデプロイされます。
 
 !!! note "Docker Desktop バージョン"
-    このガイドの作成時点では、Docker Desktop のバージョンは `4.27.1 (136059)` で、Docker Engine `25.0.2` を使用していました。w
+    このガイドの作成時点では、Docker Desktop のバージョンは `4.37.1 (178610)` で、Docker Engine `27.4.0` を使用していました。w
 
 <!--
 ### Install and confirm the cluster
@@ -369,7 +369,7 @@ In this section, a minikube installation with ingress is created.  Minikube is s
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 
 !!! note "Minikube と Kubernetes バージョン"
-    このガイドの作成時点では、minikube のバージョンは `1.32.0` で、Kubernetes バージョン `1.28.3` がインストールされます。
+    このガイドの作成時点では、minikube のバージョンは `1.34.0` で、Kubernetes バージョン `1.31.0` がインストールされます。
 
 <!--
 ### Install and configure minikube
